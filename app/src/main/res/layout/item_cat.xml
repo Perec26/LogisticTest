@@ -29,6 +29,7 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/background_download"
             app:srcCompat="@drawable/ic_arrow_circle_down" />
 
         <androidx.appcompat.widget.AppCompatImageView

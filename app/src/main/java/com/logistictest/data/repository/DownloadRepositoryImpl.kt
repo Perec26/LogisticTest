@@ -1,6 +1,7 @@
 package com.logistictest.data.repository
 
 import android.app.DownloadManager
+import android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
@@ -21,17 +22,19 @@ class DownloadRepositoryImpl(
 ) : DownloadRepository {
     override fun downloadImage(cat: Cat) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-            downloadWithDownloadManager(cat)
-        } else {
             downloadWithOutDownloadManager(cat)
+        } else {
+            downloadWithDownloadManager(cat)
         }
     }
 
     private fun downloadWithDownloadManager(cat: Cat) {
         val uri = Uri.parse(cat.url)
+        val name = cat.id + "." + cat.url.split(".").last()
         DownloadManager.Request(uri)
             .setVisibleInDownloadsUi(true)
-            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, cat.id)
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name)
+            .setNotificationVisibility(VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .apply { downloadManager.enqueue(this) }
     }
 
