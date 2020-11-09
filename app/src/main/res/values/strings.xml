@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LogisticTest</string>
+    <string name="favorites">Favorites</string>
+    <string name="to_favorites">To Favorites</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
+</resources>
